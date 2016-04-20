@@ -1,0 +1,23 @@
+<div class="alert alert-danger" ng-show="wserror">
+  {{ wserror }}
+</div>
+<p>
+  Gib bitte die Verbindungsdaten für den NodeJS Server ein, der bisher noch keinen brauchbaren Namen hat...
+</p>
+<p>
+  <form ng-submit="connect()">
+    IP:
+    <input type="text" placeholder="z.B.: 127.0.0.1" ng-model="host" autocomplete="off" spellcheck="false" />
+    <br /> Port:
+    <input type="number" placeholder="z.B.: 3000" ng-model="port" min="1" max="65565" step="1" />
+    <br />
+
+    <input type="submit" value="Connect..." />
+  </form>
+</p>
+<p>
+  Horizontal:
+  <input type="range" min="0" max="100" ng-model="x" />
+  Vertical:
+  <input type="range" min="0" max="100" ng-model="y" />
+</p>

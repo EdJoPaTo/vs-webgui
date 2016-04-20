@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="de" ng-app="vs-webgui">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="VS Web Tools">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="style/styles.min.css" />
+  <link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+  <script src="js/angular.min.js"></script>
+  <script src="js/scripts.min.js"></script>
+
+  <title route-title suffix="true">VS Web GUI</title>
+  <meta property="og:site_name" content="VS Web GUI">
+  <meta property="og:title" content="VS Web GUI">
+  <meta property="og:description" content="Control your Robots at HAW Hamburg Distributed Systems (Verteilte Systeme/ VS)">
+  <meta name="keywords" content="haw hamburg, vs, verteilte systeme, ti, technische informatik, martin, becke">
+</head>
+<body>
+  <div class="jumbotron text-center">
+    <a href="#/">
+    <h1 route-title>VS Web Gui</h1>
+    </a>
+  </div>
+  <div class="container">
+    <div ng-hide="true">
+      JavaScript is deactivated or your browser does not support AngularJS.
+    </div>
+    <div ng-view></div>
+    <hr>
+    <div class="footer">
+      <div class="text-center">
+        made by Edgar Toll and Hauke Buhr
+      </div>
+      <div class="row">
+        <div class="col-xs-6 text-left">
+          <a href="#/impressum">Impressum</a>
+        </div>
+        <div class="col-xs-6 text-right">
+          <a href="#/about">About</a><br>
+          <a href="//github.com/EdJoPaTo/vs-webgui" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
