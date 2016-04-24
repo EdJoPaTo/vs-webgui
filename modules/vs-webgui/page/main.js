@@ -78,6 +78,12 @@ angular.module( 'vs-webgui' )
       }
     }
 
+    $scope.contextallowed = function( contextlist, context ) {
+      if ( !context ) return false;
+      if ( contextlist.indexOf( context ) < 0 ) return false;
+      return true;
+    };
+
     $scope.$watch( 'x', function( newValue, oldValue ) {
       if ( newValue === oldValue ) return;
       if ( !$scope.context ) return;
