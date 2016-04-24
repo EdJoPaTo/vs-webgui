@@ -3,6 +3,8 @@ angular.module( 'vs-webgui' )
     $scope.host = $routeParams.host;
     $scope.port = Number( $routeParams.port );
 
+    $scope.context = "robot1";
+
     $scope.connect = function() {
       $route.updateParams( {
         host: $scope.host || "127.0.0.1",
@@ -58,6 +60,8 @@ angular.module( 'vs-webgui' )
         case "request":
         case "moveVerticalToPercent":
         case "moveHorizontalToPercent":
+        case "openIT":
+        case "closeIT":
           // ignore
           break;
         default:
@@ -70,7 +74,8 @@ angular.module( 'vs-webgui' )
 
       ws.sendObj( {
         type: "moveHorizontalToPercent",
-        value: newValue
+        service: $scope.context,
+        percent: newValue
       } );
     } );
 
@@ -79,9 +84,18 @@ angular.module( 'vs-webgui' )
 
       ws.sendObj( {
         type: "moveVerticalToPercent",
-        value: newValue
+        service: $scope.context,
+        percent: newValue
       } );
     } );
 
+    $scope.$watch( 'closed', function( newValue, oldValue ) {
+      if ( newValue === oldValue ) return;
+
+      ws.sendObj( {
+        type: newValue ? "closeIT" : "openIT",
+        service: $scope.context
+      } );
+    } );
 
   } );
