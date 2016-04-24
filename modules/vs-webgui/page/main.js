@@ -5,6 +5,8 @@ angular.module( 'vs-webgui' )
 
     $scope.context = "robot1";
 
+    $scope.orientation = $routeParams.orientation ? true : false;
+
     $scope.connect = function() {
       $route.updateParams( {
         host: $scope.host || "127.0.0.1",
@@ -98,4 +100,37 @@ angular.module( 'vs-webgui' )
       } );
     } );
 
+    $scope.$watch( 'orientation', function( newValue, oldValue ) {
+      if ( newValue === oldValue ) return;
+
+      $route.updateParams( {
+        orientation: $scope.orientation ? true : null
+      } );
+    } );
+
+    function normalizeValues( min, max, value, invert ) {
+      let tmp = value;
+      tmp = tmp > 180 ? tmp - 360 : tmp;
+      tmp = invert ? tmp * -1 : tmp;
+
+      tmp = tmp > max ? max : tmp;
+      tmp = tmp < min ? min : tmp;
+      tmp = ( tmp - min ) / ( max - min ) * 100;
+      return Math.round( tmp );
+    }
+
+    window.ondeviceorientation = function( event ) {
+      if ( !$scope.orientation ) return;
+
+      if ( event.gamma > 30 ) {
+        $scope.closed = true;
+      } else if ( event.gamma < -30 ) {
+        $scope.closed = false;
+      }
+
+      $scope.y = normalizeValues( -20, 50, event.beta );
+      $scope.x = normalizeValues( -40, 40, event.alpha, true );
+
+      $scope.$apply();
+    };
   } );
