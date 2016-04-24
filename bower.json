@@ -8,6 +8,6 @@
     "node_modules",
     "components"
   ],
-  "name": "eve-angular",
+  "name": "vs-webgui",
   "version": "1.0.0-alpha1"
 }
