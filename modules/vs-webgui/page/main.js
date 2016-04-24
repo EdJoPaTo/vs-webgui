@@ -63,7 +63,6 @@ angular.module( 'vs-webgui' )
       switch ( data.type ) {
         case "allServices":
           $scope.contextlist = $scope.contextlist.concat( data.services ).filter( onlyUnique );
-          console.log($scope.context);
           if ( !$scope.context )
             $scope.context = $scope.contextlist[ 0 ];
           break;
@@ -81,6 +80,7 @@ angular.module( 'vs-webgui' )
 
     $scope.$watch( 'x', function( newValue, oldValue ) {
       if ( newValue === oldValue ) return;
+      if ( !$scope.context ) return;
 
       ws.sendObj( {
         type: "moveHorizontalToPercent",
@@ -91,6 +91,7 @@ angular.module( 'vs-webgui' )
 
     $scope.$watch( 'y', function( newValue, oldValue ) {
       if ( newValue === oldValue ) return;
+      if ( !$scope.context ) return;
 
       ws.sendObj( {
         type: "moveVerticalToPercent",
@@ -101,6 +102,7 @@ angular.module( 'vs-webgui' )
 
     $scope.$watch( 'closed', function( newValue, oldValue ) {
       if ( newValue === oldValue ) return;
+      if ( !$scope.context ) return;
 
       ws.sendObj( {
         type: newValue ? "closeIT" : "openIT",
@@ -108,13 +110,13 @@ angular.module( 'vs-webgui' )
       } );
     } );
 
-    $scope.$watch( 'context', function(newValue, oldValue) {
-      if (newValue === oldValue) return;
+    $scope.$watch( 'context', function( newValue, oldValue ) {
+      if ( newValue === oldValue ) return;
 
-      $route.updateParams({
+      $route.updateParams( {
         context: $scope.context
-      });
-    });
+      } );
+    } );
 
     $scope.$watch( 'orientation', function( newValue, oldValue ) {
       if ( newValue === oldValue ) return;
