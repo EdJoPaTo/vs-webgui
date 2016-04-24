@@ -19,6 +19,8 @@
   </form>
 </p>
 <p>
+  Context:
+  <select ng-model="context" ng-options="context for context in contextlist"></select>
   Horizontal:
   <input type="range" min="0" max="100" ng-model="x" />
   Vertical:

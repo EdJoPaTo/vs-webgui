@@ -3,7 +3,8 @@ angular.module( 'vs-webgui' )
     $scope.host = $routeParams.host;
     $scope.port = Number( $routeParams.port );
 
-    $scope.context = "robot1";
+    $scope.contextlist = [];
+    $scope.context = $routeParams.context;
 
     $scope.orientation = $routeParams.orientation ? true : false;
 
@@ -48,6 +49,10 @@ angular.module( 'vs-webgui' )
       $scope.$digest();
     };
 
+    function onlyUnique( value, index, self ) {
+      return self.indexOf( value ) === index;
+    }
+
     function handleIncomingMessage( data ) {
       console.log( "incoming", data );
 
@@ -56,8 +61,11 @@ angular.module( 'vs-webgui' )
       }
 
       switch ( data.type ) {
-        case "servers and more cases":
-          //TODO: implement
+        case "allServices":
+          $scope.contextlist = $scope.contextlist.concat( data.services ).filter( onlyUnique );
+          console.log($scope.context);
+          if ( !$scope.context )
+            $scope.context = $scope.contextlist[ 0 ];
           break;
         case "request":
         case "moveVerticalToPercent":
@@ -99,6 +107,14 @@ angular.module( 'vs-webgui' )
         service: $scope.context
       } );
     } );
+
+    $scope.$watch( 'context', function(newValue, oldValue) {
+      if (newValue === oldValue) return;
+
+      $route.updateParams({
+        context: $scope.context
+      });
+    });
 
     $scope.$watch( 'orientation', function( newValue, oldValue ) {
       if ( newValue === oldValue ) return;
