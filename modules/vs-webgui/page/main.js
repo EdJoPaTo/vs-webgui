@@ -10,31 +10,39 @@ angular.module( 'vs-webgui' )
       } );
     };
 
-    try {
-      let addr = "ws://" + $scope.host + ":" + $scope.port + "/";
-      console.log( "connect to", addr );
-      var ws = new WebSocket( addr );
-      ws.sendObj = function( data ) {
-        ws.send( JSON.stringify( data ) );
-      };
-      ws.onopen = function() {
-        console.log( "Socket has been opened!" );
-        ws.sendObj( {
-          type: "request"
-        } );
-      };
-      ws.onmessage = function( message ) {
-        try {
-          let data = JSON.parse( message.data );
-          handleIncomingMessage( data );
-        } catch ( e ) {
-          console.error( "incoming message is not a JSON string", message.data );
-        }
-      };
-    } catch ( e ) {
+    let addr = "ws://" + $scope.host + ":" + $scope.port + "/";
+    console.log( "connect to", addr );
+    var ws = new WebSocket( addr );
+    ws.sendObj = function( data ) {
+      ws.send( JSON.stringify( data ) );
+    };
+    ws.onopen = function() {
+      console.log( "Socket has been opened!" );
+      ws.sendObj( {
+        type: "request"
+      } );
+    };
+    ws.onclose = function( reason ) {
+      if ( !$scope.wserror ) {
+        $scope.wshint = "Connection closed.";
+        $scope.$digest();
+      }
+      console.warn( reason );
+    };
+    ws.onmessage = function( message ) {
+      try {
+        let data = JSON.parse( message.data );
+        handleIncomingMessage( data );
+      } catch ( e ) {
+        console.error( "incoming message is not a JSON string", message.data );
+      }
+    };
+    ws.onerror = function( error ) {
+      $scope.wshint = "";
       $scope.wserror = "Could not connect to Server :(";
-      console.error( e );
-    }
+      console.error( error );
+      $scope.$digest();
+    };
 
     function handleIncomingMessage( data ) {
       console.log( "incoming", data );
