@@ -146,14 +146,8 @@ angular.module( 'vs-webgui' )
     window.ondeviceorientation = function( event ) {
       if ( !$scope.orientation ) return;
 
-      if ( event.gamma > 30 ) {
-        $scope.closed = true;
-      } else if ( event.gamma < -30 ) {
-        $scope.closed = false;
-      }
-
       $scope.y = normalizeValues( -20, 50, event.beta );
-      $scope.x = normalizeValues( -40, 40, event.alpha, true );
+      $scope.x = normalizeValues( -40, 40, event.gamma );
 
       $scope.$apply();
     };
