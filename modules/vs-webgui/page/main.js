@@ -65,6 +65,7 @@ angular.module( 'vs-webgui' )
           $scope.contextlist = $scope.contextlist.concat( data.services ).filter( onlyUnique );
           if ( !$scope.context )
             $scope.context = $scope.contextlist[ 0 ];
+          $scope.$apply();
           break;
         case "request":
         case "moveVerticalToPercent":
