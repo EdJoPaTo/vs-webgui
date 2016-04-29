@@ -12,7 +12,7 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.4.3",
-    "gulp-connect": "^3.2.2",
+    "gulp-connect": "^4.0.0",
     "gulp-gzip": "^1.2.0",
     "gulp-minify-html": "^1.0.6",
     "gulp-plumber": "^1.1.0",
@@ -29,5 +29,5 @@
     "type": "git",
     "url": "https://github.com/EdJoPaTo/vs-webgui"
   },
-  "version": "1.0.0-beta1"
+  "version": "1.0.0-beta2"
 }

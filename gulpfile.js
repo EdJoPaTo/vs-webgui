@@ -17,7 +17,8 @@ var watch = require( 'gulp-watch' );
 var paths = { in : {
     angular: [
       'bower_components/angular/angular.min.js',
-      'bower_components/angular-route/angular-route.min.js'
+      'bower_components/angular-route/angular-route.min.js',
+      'bower_components/angular-websocket/angular-websocket.min.js'
     ],
     indexhtml: 'modules/index.html',
     release: 'public/**/*',
@@ -30,7 +31,7 @@ var paths = { in : {
     ],
     styles: [
     'style/*.scss',
-    'modules/**/*.scss'  
+    'modules/**/*.scss'
     ],
     stylethemes: 'style/theme/*.scss',
     templates: 'modules/**/*.html'

@@ -4,20 +4,6 @@
 <div class="alert alert-warning" ng-show="wshint">
   {{ wshint }}
 </div>
-<div>
-  Gib bitte die Verbindungsdaten für den NodeJS Server ein, der bisher noch keinen brauchbaren Namen hat...
-</div>
-<div>
-  <form ng-submit="connect()">
-    IP:
-    <input type="text" placeholder="z.B.: 127.0.0.1" ng-model="host" autocorrect="off" autocapitalize="off" autocomplete="off" spellcheck="false" />
-    <br /> Port:
-    <input type="number" placeholder="z.B.: 3000" ng-model="port" min="1" max="65565" step="1" />
-    <br />
-
-    <input type="submit" value="Connect..." />
-  </form>
-</div>
 <div ng-show="contextlist.length">
   Context:
   <select ng-model="context" ng-options="context for context in contextlist"></select>

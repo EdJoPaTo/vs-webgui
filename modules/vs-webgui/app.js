@@ -1,4 +1,5 @@
 angular.module( "vs-webgui", [
-  'ngRoute',
-  'general'
+  'angular-websocket',
+  'general',
+  'ngRoute'
 ] );

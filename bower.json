@@ -1,7 +1,8 @@
 {
   "dependencies": {
     "angular": "~1.5.5",
-    "angular-route": "~1.5.5"
+    "angular-route": "~1.5.5",
+    "angular-websocket": "^1.1.0"
   },
   "ignore": [
     "**/.*",
@@ -9,5 +10,5 @@
     "components"
   ],
   "name": "vs-webgui",
-  "version": "1.0.0-beta1"
+  "version": "1.0.0-beta2"
 }
