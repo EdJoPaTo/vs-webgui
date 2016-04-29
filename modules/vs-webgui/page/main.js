@@ -1,5 +1,7 @@
 angular.module( 'vs-webgui' )
   .controller( 'mainCtrl', function( $scope, $route, $routeParams, backendService ) {
+    backendService.setIdentifier($routeParams.identifier);
+
     $scope.contextlist = [];
     $scope.context = $routeParams.context;
 

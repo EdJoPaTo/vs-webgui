@@ -7,6 +7,12 @@ angular.module( "vs-webgui" )
       } )
       .when( '/doit', {
         title: 'Master of Desaster',
+        templateUrl: 'vs-webgui/page/pickIdentifier.html',
+        controller: 'pickIdentifierCtrl',
+        reloadOnSearch: false
+      } )
+      .when( '/doit/:identifier', {
+        title: 'Master of Desaster',
         templateUrl: 'vs-webgui/page/main.html',
         controller: 'mainCtrl',
         reloadOnSearch: false

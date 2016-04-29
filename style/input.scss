@@ -1,0 +1,9 @@
+input.ng-invalid.ng-dirty {
+  border-color: red;
+}
+
+form.ng-invalid {
+  input[type=submit] {
+    display: none;
+  }
+}

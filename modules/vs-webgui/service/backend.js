@@ -6,6 +6,7 @@ angular.module( 'vs-webgui' )
       error: [],
       close: []
     };
+    let identifier = 0;
     let ignoretype = [ 'request', 'moveVerticalToPercent', 'moveHorizontalToPercent', 'openIT', 'closeIT' ];
 
     let addr = BACKEND;
@@ -34,6 +35,7 @@ angular.module( 'vs-webgui' )
 
     function sendPercent( type, service, percent ) {
       ws.sendObj( {
+        identifier: identifier,
         type: type,
         service: service,
         percent: percent
@@ -42,9 +44,6 @@ angular.module( 'vs-webgui' )
 
     ws.onOpen( function() {
       console.log( "Socket has been opened!" );
-      ws.sendObj( {
-        type: "request"
-      } );
     } );
     ws.onClose( function( reason ) {
       handlers.close.forEach( function( element ) {
@@ -67,6 +66,14 @@ angular.module( 'vs-webgui' )
       handlers.error.push( callback );
     };
 
+    service.setIdentifier = function( value ) {
+      identifier = value;
+      ws.sendObj( {
+        identifier: identifier,
+        type: "request"
+      } );
+    };
+
     service.sendHorizontal = function( service, percent ) {
       sendPercent( "moveHorizontalToPercent", service, percent );
     };
@@ -75,6 +82,7 @@ angular.module( 'vs-webgui' )
     };
     service.sendClosed = function( context, closed ) {
       ws.sendObj( {
+        identifier: identifier,
         type: closed ? "closeIT" : "openIT",
         service: context
       } );
