@@ -70,6 +70,10 @@ angular.module( 'vs-webgui' )
       identifier = value;
       ws.sendObj( {
         identifier: identifier,
+        type: "init"
+      } );
+      ws.sendObj( {
+        identifier: identifier,
         type: "request"
       } );
     };
